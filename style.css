@@ -26,10 +26,8 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
 }
 
 canvas {
@@ -44,30 +42,7 @@ h1 {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
 
 button {
@@ -87,6 +62,98 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+main {
+  position: absolute;
+  height: 3000%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+#startSec {
+  margin: 10%;
+}
+
+#mug {
+  width: 20%;
+  right: 20%;
+  border-radius: 50%;
+}
+
+span {
+  padding: 10rem;
+}
+
+#sec1top{
+  background-color: #213547;
+}
+
+#sec2blank {
+
+}
+
+#sec3 {
+  background-color: aquamarine;
+}
+
+#sec4blank{
+
+}
+
+#sec5head {
+  background-color: brown;
+}
+
+#sec6blank {
+
+}
+
+#sec7{
+  background-color: darkmagenta;
+}
+
+#sec7 div{
+  line-height: 20px;
+}
+
+#sec7 h3{
+  margin: 0;
+  padding: 0;
+  font-size: 12pt;
+}
+
+#sec7 p{
+  padding: 0;
+  font-size: 8pt;
+}
+
+#sec8blank{
+
+}
+
+#sec9last {
+  background-color: #213547;
+}
+
+video{
+  width: 100%;
+}
+
+.vidPort{
+  grid-row: span 2 / auto;
+}
+
+.vidLand{
+  grid-column: span 2 / auto;
+}
+
+blockquote {
+}
+
+section {
+  /*padding: 1rem 1rem 100rem;*/
 }
 
 @media (prefers-color-scheme: light) {
