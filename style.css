@@ -13,6 +13,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 a {
@@ -77,9 +78,9 @@ main {
 }
 
 #mug {
-  width: 20%;
+  width: 40%;
   right: 20%;
-  border-radius: 50%;
+  border-radius: 5%;
 }
 
 span {
@@ -103,7 +104,10 @@ span {
 }
 
 #sec5head {
-  background-color: brown;
+  background-color: black;
+  display: grid;
+  gap: 2%;
+  grid-template-rows: 1fr auto auto 1fr;
 }
 
 #sec6blank {
@@ -137,6 +141,53 @@ span {
   background-color: #213547;
 }
 
+#sec1top h1, #sec9last h1{
+  font-size: 26pt;
+}
+
+.skillRow{
+  display: grid;
+  gap: 5%;
+  align-content: center;
+  grid-template-columns: 2fr 1fr 1fr
+}
+
+.skillList{
+  text-align: right;
+}
+
+.knowList{
+  display: flex;
+  background-color: beige;
+  border-radius: 50vh;
+  transition: 2s;
+  height: 1.75em;
+  top: 1.75em;
+  position: relative;
+}
+
+.exList{
+  display: flex;
+  background-color: beige;
+  border-radius: 50vh;
+  transition: 2s;
+  height: 1.75em;
+  top: 1.75em;
+  position: relative;
+}
+
+.progress-bar{
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 50vh;
+  overflow: hidden;
+}
+
+.bg-primary{
+  background-color: aqua !important;
+}
+
 video{
   width: 100%;
 }
@@ -168,3 +219,86 @@ section {
     background-color: #f9f9f9;
   }
 }
+
+.effect.effect-twelve {
+  background: #42b078;
+  display: contents;
+  position: absolute;
+}
+
+.effect-twelve .tab-text h2 {
+  position: relative;
+  padding: .5em 0;
+  text-align: left;
+  overflow: hidden;
+  margin: 0;
+}
+
+.effect.effect-twelve h2:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  transform: translate3d(-100%, 0, 0);
+  transition: all .35s;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -webkit-transition: all .35s;
+}
+
+.effect.effect-twelve:hover h2:after {
+  transform: translate3d(0, 0, 0);
+}
+
+.effect-twelve .tab-text p {
+  padding: .7em 0;
+  font-size: .8rem;
+  text-align: left;
+  line-height: 1.1;
+  transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+  opacity: 0;
+  transition: all .35s;
+  -webkit-transition: all .35s;
+}
+
+.effect-twelve:hover p {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.effect.effect-twelve img {
+  opacity: 1;
+  transform: translate3d(-10px, 0, 0);
+  transition: all .35s;
+  -webkit-transform: translate3d(-10px, 0, 0);
+  -webkit-transition: all .35s;
+  width: 100%;
+}
+
+.effect.effect-twelve:hover img {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  opacity: .4;
+}
+
+.colum-12{
+  float: left;
+  padding: 15px;
+}
+
+.tab-text{
+  position: absolute;
+  padding: 0 1em;
+  top: 0;
+  width: 85%;
+  overflow: hidden;
+}
+
+.imageCont{
+  position: relative;
+}
+
