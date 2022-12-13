@@ -2,6 +2,8 @@ import './style.css'
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {FBXLoader} from "three/addons/loaders/FBXLoader.js";
+import {FontLoader} from "three/addons/loaders/FontLoader.js";
+import {TextGeometry} from "three/addons/geometries/TextGeometry.js";
 
 
 if ('scrollRestoration' in history) {
@@ -57,10 +59,6 @@ window.scrollTo(0, heightMinusBuff * 0.5);
 
 // setting up scene basics
 const box = new THREE.BoxGeometry(threeWidth, threeHeight, threeHeight);
-const geometry = new THREE.TorusGeometry(5, 0.5, 16, 100);
-const blueWireMat = new THREE.MeshStandardMaterial({color: 0x4287f5, wireframe: true});
-const torus = new THREE.Mesh(geometry, blueWireMat);
-torus.position.set(0, 0, 20);
 const greenFlatMat = new THREE.MeshStandardMaterial({color: 0x0bceaf})
 const matbox = new THREE.Mesh(box, greenFlatMat);
 matbox.position.set(0,0, 0);
@@ -72,7 +70,6 @@ fillLight.position.set(-5, 15, 30);
 fillLight.intensity = 0.5;
 const ambiLight = new THREE.AmbientLight(0xffffff);
 
-//scene.add(torus);
 //scene.add(matbox);
 scene.add(keyLight);
 scene.add(fillLight);
@@ -114,14 +111,45 @@ function loadBigBang(){
 
 // loading custom meshes
 const loader = new GLTFLoader();
+const fontLoader = new FontLoader();
 let face = {scene: {visible: false}};
+let sci1;
+let sci2;
+let torus = {scene: {visible: false}};
 function loadME() {
-    loader.load('assets/me3d test.glb', function (gltf) {
-        gltf.scene.position.set(0, 0, 20);
+    loader.load('assets/ME3D.glb', function (gltf) {
+        gltf.scene.position.set(10, 0.5, 20);
+        gltf.scene.rotation.set(0, -1, 0);
         gltf.scene.scale.set(2, 2, 2);
         gltf.scene.visible = false;
         scene.add(gltf.scene);
         face = gltf;
+        fontLoader.load('assets/Karnivore_Regular.json', function (font){
+            const sciGeo = new TextGeometry( 'SCIENCE RULES!!', {
+                font: font,
+                size: 10,
+                height: 1,
+                curveSegments: 1,
+                bevelEnabled: false,
+                bevelThickness: 1,
+                bevelSize: 2,
+                bevelOffset: 0,
+                bevelSegments: 3
+            } );
+            sci1 = new THREE.Mesh(sciGeo, blackWire);
+            sci2 = new THREE.Mesh(sciGeo, blackWire);
+            sci1.position.set(20, 6, 10);
+            sci2.position.set(-50, -7, 10);
+            sci1.scale.set(0.2, 0.2, 0.2);
+            sci2.scale.set(0.2, 0.2, 0.2);
+            scene.add(sci1);
+            scene.add(sci2);
+            const geometry = new THREE.TorusGeometry(8, 0.5, 16, 50);
+            const blueWireMat = new THREE.MeshStandardMaterial({color: 0x19325c, wireframe: true});
+            torus = new THREE.Mesh(geometry, blueWireMat);
+            torus.position.set(20, 0, 9);
+            scene.add(torus);
+        });
     }, undefined, function (error) {
         console.error(error);
     });
@@ -144,7 +172,7 @@ function loadGlass() {
 
 let umA = {scene: {visible: false}};
 function loadUm() {
-    loader.load('assets/umActually.v1.U.glb', function (actually) {
+    loader.load('assets/umActually.v1.Web.glb', function (actually) {
         actually.scene.position.set(1.8, -2.6, 31)
         actually.scene.rotation.set(0.23, -1.2, 0)
         actually.scene.visible = false;
@@ -256,16 +284,16 @@ let glassLoad = true;
 let bangLoad = true;
 function progressCircle(degrees){
     console.log(degrees);
-    if (0 <= degrees && degrees < 40) {
-        aPlaceTop = degrees * 100 / 4000;
+    if (0 <= degrees && degrees < 30) {
+        aPlaceTop = degrees * 100 / 3000;
         if (umLoad){
             umLoad = false;
             loadUm();
         }
         upAtTheTop(aPlaceTop);
     }
-    else if (40 <= degrees && degrees < 80) {
-        bPlace3d = (degrees - 40) * 100 / 4000;
+    else if (30 <= degrees && degrees < 90) {
+        bPlace3d = (degrees - 30) * 100 / 6000;
         move3dSet(bPlace3d);
         if (rollLoad) {
             rollLoad = false;
@@ -276,40 +304,40 @@ function progressCircle(degrees){
             loadPics();
         }
     }
-    else if (80 <= degrees && degrees < 135) {
-        cPlaceVid = (degrees - 80) * 100 / 4000;
+    else if (90 <= degrees && degrees < 120) {
+        cPlaceVid = (degrees - 90) * 100 / 3000;
         if (umLoad){
             umLoad = false;
             loadUm();
         }
         behindPics(cPlaceVid);
     }
-    else if (135 <= degrees && degrees < 180) {
-        dPlace3d = (degrees - 135) * 100 / 4500;
+    else if (120 <= degrees && degrees < 180) {
+        dPlace3d = (degrees - 120) * 100 / 6000;
         if (picLoad){
             picLoad = false;
             loadPics();
         }
         upFromStart(dPlace3d);
     }
-    else if (180 <= degrees && degrees < 220) {
-        ePlaceStart = (degrees - 180) * 100 / 4000;
+    else if (180 <= degrees && degrees < 210) {
+        ePlaceStart = (degrees - 180) * 100 / 3000;
         startPlacesHidden(ePlaceStart);
         if (headLoad) {
             headLoad = false;
             loadME();
         }
     }
-    else if (220 <= degrees && degrees < 260) {
-        fPlace3d = (degrees - 220) * 100 / 4000;
+    else if (210 <= degrees && degrees < 270) {
+        fPlace3d = (degrees - 210) * 100 / 6000;
         if (vidLoad) {
             vidLoad = false;
             loadVids();
         }
         downFromStart(fPlace3d);
     }
-    else if (260 <= degrees && degrees < 300) {
-        gPlaceStory = (degrees - 260) * 100 / 4000;
+    else if (270 <= degrees && degrees < 300) {
+        gPlaceStory = (degrees - 270) * 100 / 3000;
         if (headLoad) {
             headLoad = false;
             loadME();
@@ -342,7 +370,8 @@ function progressCircle(degrees){
     }
     else {console.log('circle out of bounds!!!');}
     umA.scene.visible = 30 <= degrees && degrees < 100;
-    face.scene.visible = 190 <= degrees && degrees < 270;
+    face.scene.visible = 200 <= degrees && degrees < 280;
+    torus.visible = 200 <= degrees && degrees < 280;
     nMesh.visible = 100 <= degrees && degrees < 190;
     if (284 <= degrees && degrees < 288){
         let bangHidePlace = (degrees - 284) * 100 / 400;
@@ -358,7 +387,9 @@ const umMoveX = [-1.8, 1.8];
 const techScale = [100, .125];
 const techScaleX = [2, 20]
 const techY = [0, threeHeight/2];
-const headRot = [12.56, 0];
+const headRot = [1, -1];
+const headMove = [10, -10];
+const torusRoll = [0, 10];
 const fogUp = [0.085, 0];
 const fogDown = [0, 0.085];
 const fog2Up = [0.02, 0];
@@ -382,7 +413,7 @@ function upFromStart(place) {
 }
 
 function downFromStart(place) {
-    matbox.position.x += percentToValue(place, matbox.position.x, flyInFromOffRight);
+    //matbox.position.x += percentToValue(place, matbox.position.x, flyInFromOffRight);
     moveMyHead(place);
 }
 
@@ -401,6 +432,11 @@ function move3dSet(place){
 
 function moveMyHead(place){
     face.scene.rotation.y += percentToValue(place, face.scene.rotation.y, headRot);
+    face.scene.position.x += percentToValue(place, face.scene.position.x, headMove);
+    sci1.position.x += percentToValue(place, sci1.position.x, [20, -50]);
+    sci2.position.x += percentToValue(place, sci2.position.x, [-50, 20]);
+    torus.position.x += percentToValue(place, torus.position.x, [20, -20]);
+    torus.rotation.z += percentToValue(place, torus.rotation.z, torusRoll);
 }
 
 function bigBang(place){
