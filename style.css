@@ -5,7 +5,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: white;
   background-color: #242424;
 
   font-synthesis: none;
@@ -20,9 +20,27 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 a:hover {
   color: #535bf2;
+}
+
+a img{
+  width: 10%;
+  left: 0;
+  top:0;
+  color: white;
+}
+
+a img:hover{
+  color: #747bff;
 }
 
 body {
@@ -74,13 +92,73 @@ main {
 }
 
 #startSec {
-  margin: 10%;
+  margin: 10% 10% 0 10%;
+  display: grid;
+  gap: 2%;
+  grid-template-columns: 40% 60%;
 }
+.typewriter{
+  color: white;
+  text-align: left;
+}
+
+.typewriter span{
+  text-indent: 0.5em;
+  position: absolute;
+  overflow: hidden;
+  white-space: nowrap;
+  visibility: hidden;
+  border-right: 4px solid transparent;
+  max-width: 10em;
+  padding: 0;
+}
+
+.typewriter span:nth-child(1){
+  animation: typing 0.7s steps(10),
+  typingReverse 0.7s steps(10) 0.4s;
+}
+
+.typewriter span:nth-child(2){
+  animation: typing 0.7s steps(11) 1s,
+  typingReverse 0.7s steps(11) 1.4s;
+}
+
+.typewriter span:nth-child(3){
+  animation: typing 0.7s steps(9) 2s,
+  typingReverse 0.7s steps(9) 2.4s;
+}
+
+.typewriter span:nth-child(4){
+  animation: typing 0.7s steps(14) 3s,
+  typingReverse 0.7s steps(14) 3.4s;
+}
+
+.typewriter span:nth-child(5){
+  animation: typing 0.7s steps(10) 4s,
+  typingReverse 0.7s steps(10) 4.4s;
+}
+
+.typewriter span:nth-child(6){
+  animation: typing 1s steps(5) 5s forwards;
+}
+
+
+@keyframes typing {
+  from { visibility: hidden; }
+  to { visibility: visible; color: white; }
+}
+
+@keyframes typingReverse {
+  from { visibility: visible; color: white; }
+  to {  }
+}
+
 
 #mug {
   width: 40%;
   right: 20%;
   border-radius: 5%;
+  grid-row:span 2;
 }
 
 span {
@@ -107,7 +185,7 @@ span {
   background-color: black;
   display: grid;
   gap: 2%;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 #sec6blank {
@@ -115,7 +193,7 @@ span {
 }
 
 #sec7{
-  background-color: darkmagenta;
+  background-color: #773a77;
 }
 
 #sec7 div{
@@ -188,28 +266,99 @@ span {
   background-color: aqua !important;
 }
 
+#rollGrid{
+  margin: 2% 7% 2% 7%;
+  height: 94%;
+  width: 86%;
+  display: grid;
+  gap: 2%;
+  grid-template-rows: repeat(auto-fit, minmax(5%, 1fr));
+  grid-template-columns: 1fr;
+}
+
 video{
   width: 100%;
 }
 
-blockquote {
+@media  only screen and (max-width: 430px) {
+  #sec5head{
+    display: block;
+  }
+  #startSec{
+    display: block;
+  }
+  #sec1top h1, #sec9last h1{
+    margin: 0;
+    font-size: 14pt;
+  }
+  #lowGallery, #highGallery{
+    display: flow-root !important;
+  }
+  #rollGrid{
+    width: auto;
+  }
+  .skillRow{
+    display: flex;
+    flex-direction: column;
+  }
+  .skillList{
+    text-align: left;
+    bottom: 0;
+  }
+  .knowList{
+    width: 50%;
+    left: 20%;
+  }
+  .exList{
+    width: 50%;
+    left: 40%;
+  }
+  #rollGrid .skillRow:nth-child(1){
+    display: grid;
+    width: 90%;
+  }
+  #rollGrid .skillRow:nth-child(15){
+    display: grid;
+    width: 90%;
+  }
+  .tab-text-video h2{
+    font-size: 16pt;
+  }
+  .tab-text-video p{
+
+  }
+  #sec5head a{
+    padding: 0;
+  }
+  #sec5head li{
+    font-size: 12pt;
+    line-height: 1.4em;
+  }
+  #sec5head h2{
+    font-size: 14pt;
+    padding: 2%;
+    text-align: left;
+  }
 }
 
-section {
-  /*padding: 1rem 1rem 100rem;*/
+#lowGallery{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 2% auto;
+  height: 96%;
+  width: 96%;
+  gap: 2%;
+  overflow: scroll
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#highGallery{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 2% auto;
+  height: 96%;
+  width: 96%;
+  gap: 2%;
+  overflow: scroll
 }
 
 .effect.effect-twelve {
@@ -310,5 +459,22 @@ section {
 .imageCont{
   position: relative;
   width: 100%;
+}
+
+#sec7.imageCont{
+
+}
+
+#sec7 .tab-text-video h2{
+  text-align: left;
+  line-height: 2rem;
+  font-size: 18pt;
+  color: white;
+}
+#sec7 .tab-text-video p{
+  text-align: left;
+  line-height: 2rem;
+  font-size: 14pt;
+  color: white;
 }
 

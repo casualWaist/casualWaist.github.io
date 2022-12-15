@@ -19,7 +19,8 @@ render.setSize(window.innerWidth, window.innerHeight);
 camera.position.setZ(30);
 render.render(scene, camera);
 function reRender(){
-    render.setPixelRatio(window.devicePixelRatio);
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
     render.setSize(window.innerWidth, window.innerHeight);
 }
 
@@ -63,10 +64,10 @@ const greenFlatMat = new THREE.MeshStandardMaterial({color: 0x0bceaf})
 const matbox = new THREE.Mesh(box, greenFlatMat);
 matbox.position.set(0,0, 0);
 const keyLight = new THREE.PointLight(0xffffff);
-keyLight.position.set(5, 15, 30);
+keyLight.position.set(5, 15, 20);
 keyLight.intensity = 0.75;
 const fillLight = new THREE.PointLight(0xffffff);
-fillLight.position.set(-5, 15, 30);
+fillLight.position.set(-5, 15, 20);
 fillLight.intensity = 0.5;
 const ambiLight = new THREE.AmbientLight(0xffffff);
 
@@ -87,7 +88,7 @@ const color = 0x4287f5;
 const density = 0.085;
 scene.fog = new THREE.FogExp2(color, density);
 
-function createTri(){
+function createTri(arrange){
     const tri = new THREE.ConeGeometry(1, 1, 3);
     const star = new THREE.Mesh(tri, blackWire);
 
@@ -95,17 +96,19 @@ function createTri(){
         .fill()
         .map(() => THREE.MathUtils.randFloatSpread(100));
 
-    //star.position.set(tx, ty, tz);
+    if (arrange){
+        star.position.set(tx, ty, tz);
+    }
     scene.add(star);
     return {actor: star, mark: [tx, ty, tz]};
 }
 
 let bangArray;
-function loadBigBang(){
+function loadBigBang(arrange){
     let aLen = 200;
     bangArray = new Array(aLen);
     for (let i = 0; i < aLen; i++) {
-        bangArray[i] = createTri();
+        bangArray[i] = createTri(arrange);
     }
 }
 
@@ -127,7 +130,7 @@ function loadME() {
         fontLoader.load('assets/Karnivore_Regular.json', function (font){
             const sciGeo = new TextGeometry( 'SCIENCE RULES!!', {
                 font: font,
-                size: 10,
+                size: 8,
                 height: 1,
                 curveSegments: 1,
                 bevelEnabled: false,
@@ -138,8 +141,8 @@ function loadME() {
             } );
             sci1 = new THREE.Mesh(sciGeo, blackWire);
             sci2 = new THREE.Mesh(sciGeo, blackWire);
-            sci1.position.set(20, 6, 10);
-            sci2.position.set(-50, -7, 10);
+            sci1.position.set(25, 6, 10);
+            sci2.position.set(-40, -7, 10);
             sci1.scale.set(0.2, 0.2, 0.2);
             sci2.scale.set(0.2, 0.2, 0.2);
             scene.add(sci1);
@@ -170,14 +173,26 @@ function loadGlass() {
     });
 }
 
+const imageTex = new THREE.TextureLoader().load('/assets/malDesk.jpg');
+const altTex1 = new THREE.TextureLoader().load('/assets/blocksFin.jpg');
+const altTex2 = new THREE.TextureLoader().load('/assets/deckCover.jpg');
+const altText3 = new THREE.TextureLoader().load('/assets/islandFinished.jpg');
+imageTex.flipY = false;
+altTex1.flipY = false;
+altTex2.flipY = false;
+altText3.flipY = false;
 let umA = {scene: {visible: false}};
+let umMat;
 function loadUm() {
     loader.load('assets/umActually.v1.Web.glb', function (actually) {
         actually.scene.position.set(1.8, -2.6, 31)
         actually.scene.rotation.set(0.23, -1.2, 0)
         actually.scene.visible = false;
         scene.add(actually.scene);
+        console.log(actually.scene.children);
+        actually.scene.children[83].children[1].material = new THREE.MeshStandardMaterial({map: imageTex});
         umA = actually;
+        umMat = actually.scene.children[83].children[1].material;
     }, undefined, function (error) {
         console.error(error);
     });
@@ -215,7 +230,8 @@ function loadPics(){
         .then ( (s) => {
             pics = document.querySelector("#sec3");
             pics.innerHTML = s;
-        });
+        }).then(() => {let gal = pics.querySelector("#highGallery");
+        gal.scroll({top: gal.scrollHeight}); });
 }
 
 let rollTop;
@@ -286,10 +302,6 @@ function progressCircle(degrees){
     console.log(degrees);
     if (0 <= degrees && degrees < 30) {
         aPlaceTop = degrees * 100 / 3000;
-        if (umLoad){
-            umLoad = false;
-            loadUm();
-        }
         upAtTheTop(aPlaceTop);
     }
     else if (30 <= degrees && degrees < 90) {
@@ -306,10 +318,6 @@ function progressCircle(degrees){
     }
     else if (90 <= degrees && degrees < 120) {
         cPlaceVid = (degrees - 90) * 100 / 3000;
-        if (umLoad){
-            umLoad = false;
-            loadUm();
-        }
         behindPics(cPlaceVid);
     }
     else if (120 <= degrees && degrees < 180) {
@@ -344,7 +352,7 @@ function progressCircle(degrees){
         }
         if(bangLoad){
             bangLoad = false;
-            loadBigBang();
+            loadBigBang(false);
         }
         throughVideos(gPlaceStory);
     }
@@ -364,7 +372,7 @@ function progressCircle(degrees){
         iPlaceBottom = (degrees - 340) * 100 / 4000;
         if(bangLoad){
             bangLoad = false;
-            loadBigBang();
+            loadBigBang(true);
         }
         hideBangLow(iPlaceBottom);
     }
@@ -376,6 +384,12 @@ function progressCircle(degrees){
     if (284 <= degrees && degrees < 288){
         let bangHidePlace = (degrees - 284) * 100 / 400;
         hideBangHigh(bangHidePlace);
+    }
+    if (0 <= degrees && degrees <= 130){
+        if (umLoad){
+            umLoad = false;
+            loadUm();
+        }
     }
     //console.log(firstSecPlace, secondSecPlace, thirdSecPlace, fourthSecPlace);
 }
@@ -423,18 +437,37 @@ function throughVideos(place) {
 
 function behindPics(place){
     scene.fog.density += percentToValue(place, scene.fog.density, fogDown);
+    keyLight.position.y += percentToValue(place, keyLight.position.y, [5, 15]);
+    fillLight.position.y += percentToValue(place, fillLight.position.y, [5, 15]);
 }
 
 function move3dSet(place){
     umA.scene.rotation.y += percentToValue(place, umA.scene.rotation.y, umRotate);
     umA.scene.position.x += percentToValue(place, umA.scene.position.x, umMoveX);
+
+    if (0.25 <= place && place <= 0.35 && umMat.map !== imageTex) {
+        umMat.map = imageTex;
+        umMat.needsUpdate = true;
+    }
+    else if (0.35 <= place && place <= 0.5 && umMat.map !== altTex1) {
+        umMat.map = altTex1;
+        umMat.needsUpdate = true;
+    }
+    else if (0.5 <= place && place <= 0.65 && umMat.map !== altTex2) {
+        umMat.map = altTex2;
+        umMat.needsUpdate = true;
+    }
+    else if (0.65 <= place && place <= 0.8 && umMat.map !== altText3) {
+        umMat.map = altText3;
+        umMat.needsUpdate = true;
+    }
 }
 
 function moveMyHead(place){
     face.scene.rotation.y += percentToValue(place, face.scene.rotation.y, headRot);
     face.scene.position.x += percentToValue(place, face.scene.position.x, headMove);
-    sci1.position.x += percentToValue(place, sci1.position.x, [20, -50]);
-    sci2.position.x += percentToValue(place, sci2.position.x, [-50, 20]);
+    sci1.position.x += percentToValue(place, sci1.position.x, [25, -50]);
+    sci2.position.x += percentToValue(place, sci2.position.x, [-40, 20]);
     torus.position.x += percentToValue(place, torus.position.x, [20, -20]);
     torus.rotation.z += percentToValue(place, torus.rotation.z, torusRoll);
 }
@@ -464,6 +497,8 @@ function hideBangHigh(place){
 
 function upAtTheTop(place){
     scene.fog.density += percentToValue(place, scene.fog.density, fog2Up);
+    keyLight.position.y += percentToValue(place, keyLight.position.y, [15, 5]);
+    fillLight.position.y += percentToValue(place, fillLight.position.y, [15, 5]);
 }
 
 function moveCamera(diff){
