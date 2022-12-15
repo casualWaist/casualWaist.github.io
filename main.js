@@ -1,4 +1,4 @@
-import '../style.css'
+import './style.css'
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {FBXLoader} from "three/addons/loaders/FBXLoader.js";
@@ -120,14 +120,14 @@ let sci1;
 let sci2;
 let torus = {scene: {visible: false}};
 function loadME() {
-    loader.load('assets/ME3D.glb', function (gltf) {
+    loader.load('gitDist/assets/ME3D.glb', function (gltf) {
         gltf.scene.position.set(10, 0.5, 20);
         gltf.scene.rotation.set(0, -1, 0);
         gltf.scene.scale.set(2, 2, 2);
         gltf.scene.visible = false;
         scene.add(gltf.scene);
         face = gltf;
-        fontLoader.load('assets/Karnivore_Regular.json', function (font){
+        fontLoader.load('gitDist/assets/Karnivore_Regular.json', function (font){
             const sciGeo = new TextGeometry( 'SCIENCE RULES!!', {
                 font: font,
                 size: 8,
@@ -160,7 +160,7 @@ function loadME() {
 
 let glasses = {scene: {visible: false}};
 function loadGlass() {
-    loader.load('assets/glasses.glb', function (glas) {
+    loader.load('gitDist/assets/glasses.glb', function (glas) {
         glas.scene.position.set(0, 0, 25);
         glas.scene.rotation.set(0, -1.57, 0);
         glas.scene.visible = false;
@@ -173,10 +173,10 @@ function loadGlass() {
     });
 }
 
-const imageTex = new THREE.TextureLoader().load('/assets/malDesk.jpg');
-const altTex1 = new THREE.TextureLoader().load('/assets/blocksFin.jpg');
-const altTex2 = new THREE.TextureLoader().load('/assets/deckCover.jpg');
-const altText3 = new THREE.TextureLoader().load('/assets/islandFinished.jpg');
+const imageTex = new THREE.TextureLoader().load('gitDist/assets/malDesk.jpg');
+const altTex1 = new THREE.TextureLoader().load('gitDist/assets/blocksFin.jpg');
+const altTex2 = new THREE.TextureLoader().load('gitDist/assets/deckCover.jpg');
+const altText3 = new THREE.TextureLoader().load('gitDist/assets/islandFinished.jpg');
 imageTex.flipY = false;
 altTex1.flipY = false;
 altTex2.flipY = false;
@@ -184,7 +184,7 @@ altText3.flipY = false;
 let umA = {scene: {visible: false}};
 let umMat;
 function loadUm() {
-    loader.load('assets/umActually.v1.Web.glb', function (actually) {
+    loader.load('gitDist/assets/umActually.v1.Web.glb', function (actually) {
         actually.scene.position.set(1.8, -2.6, 31)
         actually.scene.rotation.set(0.23, -1.2, 0)
         actually.scene.visible = false;
@@ -201,7 +201,7 @@ function loadUm() {
 const fbxLoader = new FBXLoader();
 let sign = {scene: {visible: false}};
 function loadSign() {
-    fbxLoader.load( 'assets/A&ASigns.fbx', function ( fbx ) {
+    fbxLoader.load( 'gitDist/assets/A&ASigns.fbx', function ( fbx ) {
         fbx.position.set(-5, -2, 20);
         fbx.rotation.set(1.57, 3.14, 3.14);
         fbx.scale.set(0.125, 0.125, 0.125);
@@ -215,7 +215,7 @@ function loadSign() {
 
 let vids;
 function loadVids(){
-    fetch('videoSection.html')
+    fetch('gitDist/videoSection.html')
     .then ( (r) => { return r.text();  } )
     .then ( (s) => {
         vids = document.querySelector("#sec7");
@@ -225,7 +225,7 @@ function loadVids(){
 
 let pics;
 function loadPics(){
-    fetch('picSection.html')
+    fetch('gitDist/picSection.html')
         .then ( (r) => { return r.text();  } )
         .then ( (s) => {
             pics = document.querySelector("#sec3");
@@ -237,7 +237,7 @@ function loadPics(){
 let rollTop;
 let rollBottom;
 function loadRollover(){
-    fetch('rollSection.html')
+    fetch('gitDist/rollSection.html')
         .then ( (r) => { return r.text();  } )
         .then ( (s) => {
             rollTop = document.querySelector("#sec1top");
