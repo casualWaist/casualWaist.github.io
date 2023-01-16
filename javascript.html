@@ -1,0 +1,143 @@
+<!--Javascript Card-->
+
+
+<div style="width: 100%; height: 100%; overflow: scroll; border-radius: 2vw">
+    <card>
+        <div id="right">
+            <video autoplay muted loop playsinline>
+                <source src="public/jsDev.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="left">
+            <div class="one-line">
+                <h1 class="highlighted">JavaScript Developer</h1>
+            </div>
+            <div class="one-line" style="padding: 1vw 0 1vw 0; line-height: 2em;">
+                <h2 class="highlighted" style="color: #6EBB46">HTML5 | CSS | Node | Vite | Vue | Three |
+                    REST API | Bootstrap</h2>
+            </div>
+            <div class="one-line">
+                <h3 class="highlighted">A&A Signs Inc — 2018-2022</h3>
+            </div>
+            <div class="one-line-bio">
+                <p class="highlighted">Displaying information in a clean and beautiful way is paramount when one makes signs
+                for a living. These skills translate well to Front End Design and I put them to use throughout a number
+                of Digital Sign Displays that I designed over the years.</p><p id="extra" class="highlighted">These displays all ran custom Web Pages that I
+                would design on a per-case basis, and many could display live data and update layouts based on changing conditions.</p>
+            </div>
+            <div style="text-align: center; padding: 2vw;">
+                <a href="Javascript Resume 2023.pdf" target="_blank" rel="noopener noreferrer">
+                    <button>Résumé</button>
+                </a>
+                <a href="https://github.com/casualWaist/" target="_blank" rel="noopener noreferrer">
+                    <button>GitHub</button>
+                </a>
+                <button class="reStart">Play Again</button>
+            </div>
+        </div>
+    </card>
+</div>
+
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    card{
+        height: 100%;
+        width: 100%;
+        background-color: #ffffff;
+        background-image: url("public/white net.png");
+        background-size: cover;
+        display: flex;
+        flex-direction: row;
+    }
+
+    #left{
+        flex: 1.5;
+        padding: 8vh;
+    }
+
+    #right{
+        flex: 1;
+        width: 30%;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
+    }
+
+    h1{
+        font-size: 3vw;
+    }
+
+    video{
+        height: 100%;
+    }
+
+    .one-line{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .one-line-bio{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    @media(orientation: portrait){
+        h2{
+            font-size: 1.2em;
+        }
+        #right{
+
+        }
+        #left{
+            padding: 2vw;
+        }
+    }
+
+    @media (max-height: 700px) or (max-width: 500px){
+        card{
+            flex-direction: column;
+        }
+
+        #right{
+            display: block;
+            flex: 0.3;
+            width: 100%;
+        }
+        video{
+            height: auto;
+            width: 100%;
+        }
+
+        #left{
+            padding: 8vw;
+        }
+
+        h1{
+            font-size: 4vw;
+            padding: 2vw 2vw 0 4vw;
+            color: #6EBB46;
+        }
+        #extra{
+            display: none;
+        }
+
+        h2 {
+            display: none;
+        }
+        h3{
+            font-size: 3vw;
+            padding: 0 2vw 0 4vw;
+        }
+        p{
+            padding: 1vw 3vw 2vw 8vw;
+        }
+        button{
+            margin: 1vw;
+        }
+    }
+</style>

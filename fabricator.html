@@ -1,0 +1,114 @@
+<!--Fabricator Card-->
+
+
+<div style="width: 100%; height: 100%; overflow: scroll; border-radius: 2vw">
+    <card>
+        <div id="right">
+            <video autoplay muted loop playsinline style="height: 100%;">
+                <source src="public/fabLan.mp4" type="video/webm">
+            </video>
+        </div>
+        <div id="left">
+            <div class="one-line">
+                <h1 class="highlighted">Designer | Fabricator</h1>
+            </div>
+            <div class="one-line" style="padding: 1vw 0 1vw 0; line-height: 2em;">
+                <h2 class="highlighted" style="color: #6EBB46">3D CAD/CAM | CNC Machining
+                    | 3D Printing | Woodworking | Welding</h2>
+            </div>
+            <div class="one-line">
+                <h3 class="highlighted">A&A Signs Inc — 2018-2022</h3>
+            </div>
+            <div class="one-line-bio">
+                <p class="highlighted" id="extra">I'm interested in Design in all of its forms. As a Fabricator I got hands-on experience
+                building products and tools that solved problems and enriched my life.</p> <p class="highlighted">I've taken multiple products from
+                concept to real world production, and gained a lot of perspective on the entire design process, including
+                    rapid prototyping, testing, and iterative design.</p>
+            </div>
+            <div style="text-align: center; padding: 2vw;">
+                <a href="Designer Resume 2023.pdf" target="_blank" rel="noopener noreferrer">
+                    <button>Résumé</button>
+                </a>
+                <button class="reStart">Play Again</button>
+            </div>
+        </div>
+    </card>
+</div>
+
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    card{
+        height: 100%;
+        width: 100%;
+        background-color: #ffffff;
+        background-image: url("public/white streak.png");
+        background-size: cover;
+        display: flex;
+        flex-direction: row;
+    }
+
+    #left{
+        flex: 1.5;
+        padding: 8vh;
+    }
+
+    #right{
+        width: 30%;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
+    }
+
+    h1{
+        font-size: 3vw;
+    }
+
+    .one-line{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .one-line-bio{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    @media(orientation: portrait){
+        h2{
+            font-size: 1.2em;
+        }
+        #right{
+
+        }
+        #left{
+            padding: 2vw;
+        }
+    }
+
+    @media (max-height: 700px)  or (max-width: 500px){
+        h1 {
+            font-size: 5vw;
+            padding-top: 4vw;
+        }
+        h2{
+            display: none;
+        }
+        h3 {
+            font-size: 3vw;
+        }
+        #extra{
+            display: none;
+        }
+        #left{
+            padding: 4vw;
+        }
+        button{
+            margin: 1vw;
+        }
+    }
+</style>

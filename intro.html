@@ -1,0 +1,184 @@
+<!--Intro section-->
+
+
+  <div style="width: 100%; height: 100%; overflow: scroll; border-radius: 2vw">
+    <card>
+      <div id="right">
+      </div>
+      <div id="left">
+        <div class="one-line">
+          <h1 class="highlighted">Matthew Haar</h1>
+        </div>
+        <div class="one-line">
+          <h2 class="highlighted" style="color: #6EBB46">Developer | Designer | Doer</h2>
+        </div>
+        <div class="one-line">
+          <br>
+        </div>
+        <div class="one-line">
+          <h3 class="highlighted">Fun == Creating || Solving Problems</h3>
+        </div>
+        <div class="one-line-bio">
+          <p class="highlighted">Self-Improvement is my drug of choice, and I've been very fortunate in life to have a lot of
+            opportunities to learn and grow. I've made a lot of different things over the years, and I feel my
+            biggest strength is flexibility. Click Play to explore my skills and past work, or contact me here.</p>
+        </div>
+        <div id="intButs">
+          <a href="mailto:matt@artomata.org" style="grid-area: a">
+            <button>E-Mail</button>
+          </a>
+          <a href="https://www.linkedin.com/in/matthew-haar-86a292ba/" target="_blank" rel="noopener noreferrer" style="grid-area: b">
+            <button>LinkedIn</button>
+          </a>
+          <button class="reStart" style="grid-area: c">Play</button>
+          <div id="toPlayDesk" style="grid-area: d">
+            <h3 style="color: #6EBB46">Movement : Arrow Keys</h3>
+            <h3 style="color: #6EBB46">Turbo : SpaceBar</h3>
+          </div>
+          <div id="toPlayMobile" style="grid-area: d">
+            <h3 style="color: #6EBB46">Movement : Tap & Drag</h3>
+          </div>
+        </div>
+      </div>
+    </card>
+  </div>
+
+<style>
+  *{
+    padding: 0;
+    margin: 0;
+  }
+
+  card{
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    background-image: url("public/white network.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+  }
+
+  #left{
+    flex: 1.5;
+    padding: 6vh;
+  }
+
+  #right{
+    flex: 1;
+    background-image: url(public/IMG_3750.jpg);
+    background-position: center;
+    background-size: cover;
+  }
+
+  #intButs{
+    text-align: center;
+    display: grid;
+    padding: 2vh;
+    gap: 2vw;
+    grid-template-areas:
+            "a b"
+            "c c"
+            "d d";
+  }
+
+  #toPlayMobile{
+    display: none;
+  }
+
+  .one-line{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .one-line-bio{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @media(orientation: portrait) {
+    h2 {
+      font-size: 1em;
+    }
+
+    h3 {
+      font-size: 1em;
+    }
+
+    card {
+      flex-direction: column;
+    }
+
+    #left {
+      padding: 5vh;
+    }
+
+    h3{
+      font-size: 0.8em;
+    }
+
+    card{
+      overflow: hidden;
+    }
+
+    #left{
+      padding: 4vh;
+    }
+
+    #intButs{
+      padding: 1vh;
+      gap: 1vw;
+    }
+
+    #right{
+      background-position-y: -100px;
+    }
+  }
+
+  @media (max-width: 500px) {
+  }
+
+  @media (max-height: 700px){
+    #right{
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-position: center;
+      border-radius: 2vw;
+      animation: fadeout 3s 1s forwards;
+    }
+    #left{
+      opacity: 0;
+      z-index: 1;
+      animation: fadein 2s 2s forwards;
+    }
+  }
+
+  @keyframes fadeout {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  @keyframes fadein {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @media (hover: none){
+    button {
+      margin: 2vw;
+      color: #6EBB46;
+    }
+
+    #toPlayDesk{
+      display: none;
+    }
+
+    #toPlayMobile{
+      display: block;
+    }
+
+  }
+</style>
