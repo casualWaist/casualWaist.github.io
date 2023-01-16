@@ -1,0 +1,172 @@
+<!--Python Card-->
+
+
+<div style="width: 100%; height: 100%; overflow: hidden; border-radius: 2vw">
+    <card>
+        <div id="right">
+            <video autoplay muted loop playsinline style="height: 100%">
+                <source src="output.webm" type="video/webm">
+            </video>
+        </div>
+        <div id="left">
+            <div class="one-line">
+                <h1 class="highlighted">Python Developer</h1>
+            </div>
+            <div class="one-line" style="padding: 1vw 0 1vw 0; line-height: 2em;">
+                <h2 class="highlighted" style="color: #6EBB46">APIs | Files & Data | Bezier Geometry | Django | NLP |
+                PDF</h2>
+            </div>
+            <div class="one-line">
+                <h3 class="highlighted">A&A Signs Inc — 2018-2022</h3>
+            </div>
+            <div class="one-line-bio">
+                <p id="deskBio" class="highlighted">I built a company-wide internal system I was solely responsible for designing,
+                    testing, debugging, and maintaining. This system ran on a local server I configured to fetch data
+                    from a web based api. With this data I was able to automate file creation, display various live
+                    statistics to screens around our workspace, alert employees of responsibilities, and help organize
+                    our work schedule. This server generated live HTML pages that could respond to user input and update
+                    the data across the rest of the network.</p>
+                <p id="phoneBio" class="highlighted">Pythons wide collection of libraries allowed me to create tools for every department
+                in the company, and I successfully streamlined our workflow and helped increase our profit margin significantly.</p>
+            </div>
+            <div id="pButts">
+                <a href="Python Resume 2023.pdf" target="_blank" rel="noopener noreferrer">
+                    <button>Résumé</button>
+                </a>
+                <a href="https://github.com/casualWaist/" target="_blank" rel="noopener noreferrer">
+                    <button>GitHub</button>
+                </a>
+                <button class="reStart">Play Again</button>
+            </div>
+        </div>
+    </card>
+</div>
+
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+
+    card{
+        height: 100%;
+        width: 100%;
+        background-color: #ffffff;
+        background-image: url("lite trees.png");
+        background-size: cover;
+        display: flex;
+        flex-direction: row;
+    }
+
+    #left{
+        flex: 1.5;
+        padding: 6vh;
+    }
+
+    #right{
+        flex: 1;
+        width: 30%;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
+    }
+
+    #phoneBio{
+        display: none;
+    }
+
+    #pButts{
+        text-align: center;
+        padding: 2vw;
+    }
+
+    .one-line{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .one-line-bio{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    @media(orientation: portrait){
+        h1{
+            font-size: 4vw;
+        }
+        h2{
+            font-size: 1em;
+            line-height: 1em;
+        }
+        card{
+            flex-direction: column;
+        }
+        #right{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: 2vw;
+        }
+        #left{
+            backdrop-filter: blur(10px);
+            z-index: 1;
+            margin: 10%;
+            padding: 5vh;
+            position: absolute;
+            background: #f4f3;
+            border-radius: 2vw;
+        }
+        video{
+            position: absolute;
+            left: -10px;
+        }
+        button{
+            margin: 2vw;
+        }
+    }
+
+    @media (max-height: 700px){
+        #left{
+            background: none;
+            padding: 6vw;
+        }
+
+        #right{
+            display: block;
+            flex: 0.3;
+            width: 100%;
+        }
+
+        h1{
+            font-size: 5vw;
+            color: #6EBB46;
+        }
+
+        h2 {
+            display: none;
+        }
+        h3{
+        }
+        button{
+            margin: 1vw;
+        }
+    }
+
+    @media (hover: none) {
+
+        #phoneBio{
+            display: block;
+        }
+        #deskBio{
+            display: none;
+        }
+        h3{
+            font-size: 0.8em;
+        }
+        card{
+            overflow: hidden;
+        }
+    }
+</style>
+
